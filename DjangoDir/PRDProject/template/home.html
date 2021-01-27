@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%block title%} Home Page {%endblock%}
+
+{%block head%}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
+
+    <script type='text/javascript'>
+
+          $(document).on('click', '#dropdown-process  a', function() {
+            $('#process_value').val($(this).text());
+          });
+
+          $(document).on('click', '#dropdown-thread  a', function() {
+            $('#thread_value').val($(this).text());
+          });
+
+          $(document).on('click', '#dropdown-sub-thread a', function() {
+            $('#sub_thread_value').val($(this).text());
+          });
+    </script>
+
+{%endblock%}
+
+{%block content%}
+{%include 'base.html'%}
+
+<br>
+  
+<div class="page-content p-5" id="content">
+    <!-- Toggle button -->
+<form method="post">
+{% csrf_token %}
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Process</label>
+          <div class="col-sm-10">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Process List
+                </button>
+                <div class="dropdown-menu" id='dropdown-process' aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">CR</a>
+                  <a class="dropdown-item" href="#">Refunds</a>
+                  <a class="dropdown-item" href="#">Inbound</a>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Thread</label>
+          <div class="col-sm-10">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sub Process List
+                </button>
+                <div class="dropdown-menu" id='dropdown-thread' aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">CR Thread 1</a>
+                  <a class="dropdown-item" href="#">CR Thread 2</a>
+
+                  <a class="dropdown-item" href="#">Refunds Thread 1</a>
+                  <a class="dropdown-item" href="#">Refunds Thread 2</a>
+
+                  <a class="dropdown-item" href="#">Inbound Thread 1</a>
+                  <a class="dropdown-item" href="#">Inbound Thread 2</a>
+
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sub Thread</label>
+            <div class="col-sm-10">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sub Thread Process list
+                    </button>
+                    <div class="dropdown-menu" id='dropdown-sub-thread' aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">CR Sub Thread 1</a>
+                      <a class="dropdown-item" href="#">CR Sub Thread 2</a>
+                      <a class="dropdown-item" href="#">Refunds Sub Thread 1</a>
+                      <a class="dropdown-item" href="#">Refunds Sub Thread 2</a>
+
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <br>
+        
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Comment</span>
+            </div>
+            <textarea id="textareaid" name="textareaid" class="form-control"></textarea>
+        </div>
+        <br> <br>
+    <input type="hidden" name="process_value" value="" id="process_value"/>
+    <input type="hidden" name="thread_value" value="" id="thread_value"/>
+    <input type="hidden" name="sub_thread_value" value="" id="sub_thread_value"/>
+    <button type="submit" class="btn btn-primary mb-2">Submit Data</button>
+</form>
+</div>
+
+
+
+{%endblock content%}

@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{%load static %}
+
+{%block head%}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{% static 'css/login.css'%}" />
+{%endblock%}
+
+{%block title%} Login Page {%endblock%}
+
+{%block content%}
+
+<form method="post" action="">
+    {%csrf_token%}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="{%static 'Images/loginicon.png'%}" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" id="login" class="fadeIn second" name="username" placeholder="login">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+      <br/>
+      {% for message in messages %}
+            {{message}}
+      {%endfor%}
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+    </div>
+</div>
+</form>
+{%endblock content%}
